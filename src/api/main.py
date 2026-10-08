@@ -24,15 +24,21 @@ default_origins = [
     "http://127.0.0.1:5173",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
 ]
 
 origins_set = set(default_origins)
 if frontend_origin_env:
-    origins_set.add(frontend_origin_env.strip())
+    for o in frontend_origin_env.split(","):
+        cleaned = o.strip().rstrip("/")
+        if cleaned:
+            origins_set.add(cleaned)
 if allowed_origins_env:
     for o in allowed_origins_env.split(","):
-        if o.strip():
-            origins_set.add(o.strip())
+        cleaned = o.strip().rstrip("/")
+        if cleaned:
+            origins_set.add(cleaned)
 
 app = FastAPI(
     title="AI-Based Crowd Panic & Risk Prediction API",
@@ -42,13 +48,15 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
-# Enable CORS for Vercel and Local Development
+# Enable CORS for Vercel deployments (*.vercel.app), custom domains, and local dev
 app.add_middleware(
     CORSMiddleware,
     allow_origins=list(origins_set) if "*" not in origins_set else ["*"],
-    allow_credentials=True if "*" not in origins_set else False,
-    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_origin_regex=r"^https:\/\/([a-zA-Z0-9_-]+\.)*vercel\.app$",
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "OPTIONS", "HEAD", "PUT", "DELETE"],
     allow_headers=["*"],
+    expose_headers=["*"],
 )
 
 

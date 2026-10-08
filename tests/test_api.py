@@ -48,3 +48,27 @@ def test_demo_sample_retrieval_and_404():
     # Fetch invalid demo
     invalid_resp = client.get("/api/demo/non_existent_sample_xyz")
     assert invalid_resp.status_code == 404
+
+
+def test_cors_vercel_origin_preflight():
+    vercel_origin = "https://crowdrisk-prediction.vercel.app"
+    response = client.options(
+        "/api/demo/samples",
+        headers={
+            "Origin": vercel_origin,
+            "Access-Control-Request-Method": "GET",
+            "Access-Control-Request-Headers": "authorization,content-type"
+        }
+    )
+    assert response.status_code == 200
+    assert response.headers.get("access-control-allow-origin") == vercel_origin
+
+
+def test_cors_vercel_origin_get():
+    vercel_origin = "https://crowdrisk-prediction.vercel.app"
+    response = client.get(
+        "/api/health",
+        headers={"Origin": vercel_origin}
+    )
+    assert response.status_code == 200
+    assert response.headers.get("access-control-allow-origin") == vercel_origin
