@@ -43,8 +43,7 @@ async def submit_analysis(file: UploadFile = File(...)) -> Dict[str, Any]:
         )
 
     try:
-        content = await file.read()
-        job = job_manager.create_job(original_filename=file.filename, video_bytes=content)
+        job = await job_manager.create_job_from_upload(file)
         return {
             "analysis_id": job.analysis_id,
             "status": job.status,
@@ -54,6 +53,7 @@ async def submit_analysis(file: UploadFile = File(...)) -> Dict[str, Any]:
     except ValueError as ve:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(ve))
     except Exception as e:
+        logger.error(f"Failed to initialize video processing job: {e}", exc_info=True)
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Failed to initialize video processing job."

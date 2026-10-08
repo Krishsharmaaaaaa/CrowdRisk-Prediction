@@ -72,34 +72,39 @@ class AnalysisJobManager:
                     except Exception as e:
                         logger.warning(f"Could not load metadata for job {job_folder.name}: {e}")
 
-    def create_job(self, original_filename: str, video_bytes: bytes) -> JobRecord:
+    async def create_job_from_upload(self, file) -> JobRecord:
         """
-        Validates uploaded video and creates an isolated analysis job.
+        Streams uploaded video directly to disk in 64KB chunks, validating size
+        and codec without holding the entire binary file in memory.
         """
-        # 1. Filename & extension sanitization
-        clean_name = Path(original_filename).name
+        clean_name = Path(file.filename).name
         ext = Path(clean_name).suffix.lower()
         if ext not in ALLOWED_EXTENSIONS:
             raise ValueError(f"Unsupported file format '{ext}'. Allowed extensions: {', '.join(sorted(ALLOWED_EXTENSIONS))}")
 
-        # 2. File size limit
-        if len(video_bytes) > MAX_UPLOAD_SIZE_BYTES:
-            max_mb = MAX_UPLOAD_SIZE_BYTES // (1024 * 1024)
-            raise ValueError(f"Uploaded file exceeds maximum allowed size of {max_mb} MB.")
-
-        if len(video_bytes) == 0:
-            raise ValueError("Uploaded file is empty.")
-
-        # 3. Create isolated job directory
         analysis_id = str(uuid.uuid4())
         job_dir = self.jobs_dir / analysis_id
         job_dir.mkdir(parents=True, exist_ok=True)
-
         input_video_path = job_dir / f"input{ext}"
-        with open(input_video_path, "wb") as f:
-            f.write(video_bytes)
 
-        # 4. Validate that OpenCV can read the video header
+        total_bytes = 0
+        with open(input_video_path, "wb") as buffer:
+            while True:
+                chunk = await file.read(64 * 1024)
+                if not chunk:
+                    break
+                total_bytes += len(chunk)
+                if total_bytes > MAX_UPLOAD_SIZE_BYTES:
+                    buffer.close()
+                    shutil.rmtree(job_dir, ignore_errors=True)
+                    max_mb = MAX_UPLOAD_SIZE_BYTES // (1024 * 1024)
+                    raise ValueError(f"Uploaded file exceeds maximum allowed size of {max_mb} MB.")
+                buffer.write(chunk)
+
+        if total_bytes == 0:
+            shutil.rmtree(job_dir, ignore_errors=True)
+            raise ValueError("Uploaded file is empty.")
+
         cap = cv2.VideoCapture(str(input_video_path))
         if not cap.isOpened():
             cap.release()
@@ -113,7 +118,6 @@ class AnalysisJobManager:
             shutil.rmtree(job_dir, ignore_errors=True)
             raise ValueError("Uploaded video contains no readable frames.")
 
-        # 5. Register job record
         now_iso = datetime.now(timezone.utc).isoformat()
         job = JobRecord(
             analysis_id=analysis_id,
@@ -126,7 +130,59 @@ class AnalysisJobManager:
         self._jobs[analysis_id] = job
         self._save_job_meta(job)
 
-        # 6. Dispatch to worker pool
+        self.executor.submit(self._run_job_pipeline, analysis_id, input_video_path)
+        logger.info(f"Queued analysis job: {analysis_id} for file '{clean_name}' ({total_bytes / (1024*1024):.2f} MB streamed)")
+        return job
+
+    def create_job(self, original_filename: str, video_bytes: bytes) -> JobRecord:
+        """
+        Validates uploaded video bytes and creates an isolated analysis job (sync fallback).
+        """
+        clean_name = Path(original_filename).name
+        ext = Path(clean_name).suffix.lower()
+        if ext not in ALLOWED_EXTENSIONS:
+            raise ValueError(f"Unsupported file format '{ext}'. Allowed extensions: {', '.join(sorted(ALLOWED_EXTENSIONS))}")
+
+        if len(video_bytes) > MAX_UPLOAD_SIZE_BYTES:
+            max_mb = MAX_UPLOAD_SIZE_BYTES // (1024 * 1024)
+            raise ValueError(f"Uploaded file exceeds maximum allowed size of {max_mb} MB.")
+
+        if len(video_bytes) == 0:
+            raise ValueError("Uploaded file is empty.")
+
+        analysis_id = str(uuid.uuid4())
+        job_dir = self.jobs_dir / analysis_id
+        job_dir.mkdir(parents=True, exist_ok=True)
+
+        input_video_path = job_dir / f"input{ext}"
+        with open(input_video_path, "wb") as f:
+            f.write(video_bytes)
+
+        cap = cv2.VideoCapture(str(input_video_path))
+        if not cap.isOpened():
+            cap.release()
+            shutil.rmtree(job_dir, ignore_errors=True)
+            raise ValueError("Uploaded video file could not be parsed by video decoder. Please check the codec.")
+
+        frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+        cap.release()
+
+        if frame_count <= 0:
+            shutil.rmtree(job_dir, ignore_errors=True)
+            raise ValueError("Uploaded video contains no readable frames.")
+
+        now_iso = datetime.now(timezone.utc).isoformat()
+        job = JobRecord(
+            analysis_id=analysis_id,
+            status="queued",
+            original_filename=clean_name,
+            created_at=now_iso,
+            progress=0,
+            current_stage="Job queued"
+        )
+        self._jobs[analysis_id] = job
+        self._save_job_meta(job)
+
         self.executor.submit(self._run_job_pipeline, analysis_id, input_video_path)
         logger.info(f"Queued analysis job: {analysis_id} for file '{clean_name}'")
         return job
