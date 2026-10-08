@@ -1,0 +1,178 @@
+{
+    "lawn_clip1.mp4": {
+        "clip_id": "lawn_clip1",
+        "scene": "lawn",
+        "scene_name": "Lawn (Outdoor Grass)",
+        "file_path": "C:\\Users\\ns488\\Downloads\\CrowdRisk-Prediction\\data\\videos\\lawn_clip1.mp4",
+        "total_frames": 625,
+        "fps": 30.0,
+        "normal_range": [
+            0,
+            497
+        ],
+        "abnormal_range": [
+            498,
+            624
+        ]
+    },
+    "lawn_clip2.mp4": {
+        "clip_id": "lawn_clip2",
+        "scene": "lawn",
+        "scene_name": "Lawn (Outdoor Grass)",
+        "file_path": "C:\\Users\\ns488\\Downloads\\CrowdRisk-Prediction\\data\\videos\\lawn_clip2.mp4",
+        "total_frames": 827,
+        "fps": 30.0,
+        "normal_range": [
+            0,
+            297
+        ],
+        "abnormal_range": [
+            298,
+            826
+        ]
+    },
+    "indoor_clip3.mp4": {
+        "clip_id": "indoor_clip3",
+        "scene": "indoor",
+        "scene_name": "Indoor (Hallway/Corridor)",
+        "file_path": "C:\\Users\\ns488\\Downloads\\CrowdRisk-Prediction\\data\\videos\\indoor_clip3.mp4",
+        "total_frames": 548,
+        "fps": 30.0,
+        "normal_range": [
+            0,
+            94
+        ],
+        "abnormal_range": [
+            95,
+            547
+        ]
+    },
+    "indoor_clip4.mp4": {
+        "clip_id": "indoor_clip4",
+        "scene": "indoor",
+        "scene_name": "Indoor (Hallway/Corridor)",
+        "file_path": "C:\\Users\\ns488\\Downloads\\CrowdRisk-Prediction\\data\\videos\\indoor_clip4.mp4",
+        "total_frames": 684,
+        "fps": 30.0,
+        "normal_range": [
+            0,
+            95
+        ],
+        "abnormal_range": [
+            96,
+            683
+        ]
+    },
+    "indoor_clip5.mp4": {
+        "clip_id": "indoor_clip5",
+        "scene": "indoor",
+        "scene_name": "Indoor (Hallway/Corridor)",
+        "file_path": "C:\\Users\\ns488\\Downloads\\CrowdRisk-Prediction\\data\\videos\\indoor_clip5.mp4",
+        "total_frames": 767,
+        "fps": 30.0,
+        "normal_range": [
+            0,
+            296
+        ],
+        "abnormal_range": [
+            297,
+            766
+        ]
+    },
+    "indoor_clip6.mp4": {
+        "clip_id": "indoor_clip6",
+        "scene": "indoor",
+        "scene_name": "Indoor (Hallway/Corridor)",
+        "file_path": "C:\\Users\\ns488\\Downloads\\CrowdRisk-Prediction\\data\\videos\\indoor_clip6.mp4",
+        "total_frames": 578,
+        "fps": 30.0,
+        "normal_range": [
+            0,
+            297
+        ],
+        "abnormal_range": [
+            298,
+            577
+        ]
+    },
+    "indoor_clip7.mp4": {
+        "clip_id": "indoor_clip7",
+        "scene": "indoor",
+        "scene_name": "Indoor (Hallway/Corridor)",
+        "file_path": "C:\\Users\\ns488\\Downloads\\CrowdRisk-Prediction\\data\\videos\\indoor_clip7.mp4",
+        "total_frames": 772,
+        "fps": 30.0,
+        "normal_range": [
+            0,
+            297
+        ],
+        "abnormal_range": [
+            298,
+            771
+        ]
+    },
+    "indoor_clip8.mp4": {
+        "clip_id": "indoor_clip8",
+        "scene": "indoor",
+        "scene_name": "Indoor (Hallway/Corridor)",
+        "file_path": "C:\\Users\\ns488\\Downloads\\CrowdRisk-Prediction\\data\\videos\\indoor_clip8.mp4",
+        "total_frames": 788,
+        "fps": 30.0,
+        "normal_range": [
+            0,
+            119
+        ],
+        "abnormal_range": [
+            120,
+            787
+        ]
+    },
+    "plaza_clip9.mp4": {
+        "clip_id": "plaza_clip9",
+        "scene": "plaza",
+        "scene_name": "Plaza (Outdoor Courtyard)",
+        "file_path": "C:\\Users\\ns488\\Downloads\\CrowdRisk-Prediction\\data\\videos\\plaza_clip9.mp4",
+        "total_frames": 598,
+        "fps": 30.0,
+        "normal_range": [
+            0,
+            554
+        ],
+        "abnormal_range": [
+            555,
+            597
+        ]
+    },
+    "plaza_clip10.mp4": {
+        "clip_id": "plaza_clip10",
+        "scene": "plaza",
+        "scene_name": "Plaza (Outdoor Courtyard)",
+        "file_path": "C:\\Users\\ns488\\Downloads\\CrowdRisk-Prediction\\data\\videos\\plaza_clip10.mp4",
+        "total_frames": 735,
+        "fps": 30.0,
+        "normal_range": [
+            0,
+            56
+        ],
+        "abnormal_range": [
+            57,
+            734
+        ]
+    },
+    "plaza_clip11.mp4": {
+        "clip_id": "plaza_clip11",
+        "scene": "plaza",
+        "scene_name": "Plaza (Outdoor Courtyard)",
+        "file_path": "C:\\Users\\ns488\\Downloads\\CrowdRisk-Prediction\\data\\videos\\plaza_clip11.mp4",
+        "total_frames": 807,
+        "fps": 30.0,
+        "normal_range": [
+            0,
+            766
+        ],
+        "abnormal_range": [
+            767,
+            806
+        ]
+    }
+}

@@ -1,0 +1,103 @@
+# AI-Based Crowd Panic, Bottleneck and Risk Prediction System
+# Master Configuration File
+
+system:
+  device: "auto"          # 'auto', 'cuda', or 'cpu'
+  seed: 42
+  debug: false
+
+video:
+  target_fps: null        # null preserves original video fps
+  max_dimension: 1280     # Resize if resolution exceeds this
+  display_window: false   # Open cv2.imshow GUI window during execution
+
+detection:
+  model_name: "yolov8n.pt"
+  person_class_id: 0      # YOLO class 0 is 'person'
+  confidence_threshold: 0.35
+  iou_threshold: 0.45
+
+tracking:
+  tracker_type: "bytetrack"
+  track_thresh: 0.45      # High detection threshold
+  match_thresh: 0.80      # Matching threshold for association
+  track_buffer: 30        # Frames to keep lost tracks
+  min_box_area: 100       # Filter out tiny spurious boxes
+
+trajectory:
+  window_size: 15         # Temporal rolling window (frames)
+  min_track_length: 5     # Minimum points before computing motion stats
+  smoothing_factor: 0.3   # Exponential Moving Average alpha (0 < alpha <= 1)
+
+optical_flow:
+  enabled: true
+  pyr_scale: 0.5
+  levels: 3
+  winsize: 15
+  iterations: 3
+  poly_n: 5
+  poly_sigma: 1.2
+  fast_downscale: 2       # Downscale factor for fast optical flow computation
+  flow_mag_threshold: 2.0 # Threshold for high-flow pixel ratio
+
+density:
+  grid_rows: 4
+  grid_cols: 4
+  saturation_capacity: 15          # Persons per grid cell considered max local density
+  reference_density_per_mpx: 200.0 # Image-area reference parameter (persons/Mpx) to prevent saturation
+
+bottleneck:
+  weights:
+    density: 0.30
+    speed_reduction: 0.30
+    flow_imbalance: 0.20
+    irregularity: 0.20
+  speed_drop_threshold: 0.40 # Relative speed reduction threshold
+  thresholds:
+    low: 0.40
+    critical: 0.70
+
+panic:
+  mode: "heuristic"       # 'heuristic' (baseline) or 'model' (Random Forest)
+  model_path: "models/panic_rf.joblib"
+  heuristic_weights:
+    speed_surge: 0.25
+    speed_variance: 0.20
+    direction_entropy: 0.20
+    flow_mean: 0.20
+    flow_variance: 0.15
+  thresholds:
+    low: 0.35
+    high: 0.65
+
+risk:
+  weights:
+    panic: 0.45
+    bottleneck: 0.40
+    density: 0.15
+  levels:
+    low_cutoff: 0.30
+    moderate_cutoff: 0.60
+    high_cutoff: 0.80
+
+early_warning:
+  warmup_frames: 20       # Startup frames to suppress false alarm triggers during tracker stabilization
+  sustained_window: 10    # Number of consecutive frames exceeding threshold
+  risk_threshold: 0.60    # Warning trigger threshold
+  trend_window: 15        # Window to compute slope / rising risk trend
+  lead_time_fps: 30       # Default frame rate for time calculations
+
+visualization:
+  draw_boxes: true
+  draw_trajectories: true
+  draw_density_grid: true
+  draw_bottleneck_zones: true
+  draw_dashboard: true
+  trail_length: 20
+  dashboard_alpha: 0.75
+
+paths:
+  output_video: "results/annotated_output.mp4"
+  features_csv: "results/features.csv"
+  timeline_csv: "results/risk_timeline.csv"
+  summary_json: "results/summary.json"

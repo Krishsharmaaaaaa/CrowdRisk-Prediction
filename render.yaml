@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: crowdrisk-api
+    runtime: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements-backend.txt
+    startCommand: uvicorn src.api.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+      - key: TORCH_DEVICE
+        value: cpu
+      - key: MAX_UPLOAD_SIZE_MB
+        value: "150"
+      - key: MAX_ANALYSIS_FRAMES
+        value: "300"
+      - key: FRONTEND_ORIGIN
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false
+    healthCheckPath: /api/health
+    autoDeploy: true
+    rootDir: .
