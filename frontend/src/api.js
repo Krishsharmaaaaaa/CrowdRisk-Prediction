@@ -25,26 +25,38 @@ const getApiBase = () => {
 
 export const API_BASE = getApiBase();
 
-async function fetchJSON(path, options = {}) {
+async function fetchJSON(path, options = {}, retries = 2) {
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
   const url = `${API_BASE}${cleanPath}`;
 
-  let res;
-  try {
-    res = await fetch(url, options);
-  } catch (netErr) {
-    console.error(`[API Network Error] ${options.method || 'GET'} ${cleanPath}:`, netErr);
-    throw new Error('Unable to connect to the Crowd Risk API. Please check that the backend is available.');
-  }
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      const res = await fetch(url, options);
 
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    const message = err.detail || `Request failed with HTTP ${res.status}`;
-    console.error(`[API HTTP Error] ${options.method || 'GET'} ${cleanPath} -> ${res.status}:`, message);
-    throw new Error(message);
-  }
+      if (!res.ok) {
+        // Retry transient 502/503 during Render cold start wakeups
+        if ((res.status === 502 || res.status === 503) && attempt < retries) {
+          await new Promise(r => setTimeout(r, 1500 * (attempt + 1)));
+          continue;
+        }
+        const err = await res.json().catch(() => ({}));
+        const message = err.detail || `Request failed with HTTP ${res.status}`;
+        console.error(`[API HTTP Error] ${options.method || 'GET'} ${cleanPath} -> ${res.status}:`, message);
+        throw new Error(message);
+      }
 
-  return res.json();
+      return await res.json();
+    } catch (err) {
+      // Retry GET requests on network drop or wake-up timeout
+      const isGet = !options.method || options.method.toUpperCase() === 'GET';
+      if (attempt < retries && isGet) {
+        await new Promise(r => setTimeout(r, 1500 * (attempt + 1)));
+        continue;
+      }
+      console.error(`[API Network Error] ${options.method || 'GET'} ${cleanPath}:`, err);
+      throw new Error('Unable to connect to the Crowd Risk API. Please check that the backend is available.');
+    }
+  }
 }
 
 export const api = {
@@ -64,11 +76,11 @@ export const api = {
   submitAnalysis: async (file) => {
     const form = new FormData();
     form.append('file', file);
-    return fetchJSON('/api/analyze', { method: 'POST', body: form });
+    return fetchJSON('/api/analyze', { method: 'POST', body: form }, 0);
   },
 
   /** Poll analysis job status */
-  getAnalysis: (id) => fetchJSON(`/api/analysis/${id}`),
+  getAnalysis: (id) => fetchJSON(`/api/analysis/${id}`, {}, 1),
 
   /** Get risk timeline rows */
   getTimeline: (id) => fetchJSON(`/api/analysis/${id}/timeline`),

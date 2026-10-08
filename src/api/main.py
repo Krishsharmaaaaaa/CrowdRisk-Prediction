@@ -26,6 +26,9 @@ default_origins = [
     "http://127.0.0.1:3000",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
+    "https://crowd-risk-prediction.vercel.app",
+    "https://crowdrisk-prediction.vercel.app",
+    "https://crowdrisk.vercel.app",
 ]
 
 origins_set = set(default_origins)
