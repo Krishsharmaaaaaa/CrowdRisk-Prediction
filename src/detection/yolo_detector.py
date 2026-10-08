@@ -86,14 +86,26 @@ class YOLOPersonDetector:
             return self._detect_hog(frame)
 
         try:
-            results = self.model.predict(
-                source=frame,
-                conf=self.conf_threshold,
-                iou=self.iou_threshold,
-                classes=[self.person_class_id],
-                device=self.device,
-                verbose=False
-            )
+            if hasattr(torch, "inference_mode"):
+                with torch.inference_mode():
+                    results = self.model.predict(
+                        source=frame,
+                        conf=self.conf_threshold,
+                        iou=self.iou_threshold,
+                        classes=[self.person_class_id],
+                        device=self.device,
+                        verbose=False
+                    )
+            else:
+                with torch.no_grad():
+                    results = self.model.predict(
+                        source=frame,
+                        conf=self.conf_threshold,
+                        iou=self.iou_threshold,
+                        classes=[self.person_class_id],
+                        device=self.device,
+                        verbose=False
+                    )
         except Exception:
             return self._detect_hog(frame)
 

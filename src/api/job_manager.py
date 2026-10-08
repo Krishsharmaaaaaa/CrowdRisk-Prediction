@@ -51,10 +51,11 @@ class AnalysisJobManager:
     and access to processed video, timelines, spatial grids, and CRDA reports.
     """
 
-    def __init__(self, base_jobs_dir: Optional[str] = None, max_workers: int = 2):
+    def __init__(self, base_jobs_dir: Optional[str] = None, max_workers: Optional[int] = None):
         self.jobs_dir = Path(base_jobs_dir or os.getenv("JOBS_DIR", "data/jobs")).resolve()
         self.jobs_dir.mkdir(parents=True, exist_ok=True)
-        self.executor = ThreadPoolExecutor(max_workers=max_workers, thread_name_prefix="risk_worker")
+        workers = max_workers or int(os.getenv("MAX_CONCURRENT_JOBS", "1"))
+        self.executor = ThreadPoolExecutor(max_workers=workers, thread_name_prefix="risk_worker")
         self._jobs: Dict[str, JobRecord] = {}
         self._load_existing_jobs()
 
@@ -205,6 +206,11 @@ class AnalysisJobManager:
             job.error_message = "The video could not be processed. Please check the video format and try again."
             job.completed_at = datetime.now(timezone.utc).isoformat()
             self._save_job_meta(job)
+        finally:
+            import gc
+            if "pipeline" in locals():
+                del pipeline
+            gc.collect()
 
     def get_job(self, analysis_id: str) -> Optional[JobRecord]:
         return self._jobs.get(analysis_id)
