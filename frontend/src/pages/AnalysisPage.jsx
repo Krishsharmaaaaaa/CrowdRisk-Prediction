@@ -474,6 +474,9 @@ export default function AnalysisPage({ initialMode = 'upload' }) {
                   style={{ borderRadius: 'var(--r-md)', background: '#000', maxHeight: 420 }}
                   src={videoUrl}
                   id="output-video"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
                 />
               </div>
             )}
@@ -486,7 +489,7 @@ export default function AnalysisPage({ initialMode = 'upload' }) {
               }}>
                 <CheckCircle2 size={14} style={{ color: 'var(--clr-low)', flexShrink: 0 }} />
                 <p className="disclaimer-text" style={{ color: 'rgba(34,197,94,0.9)' }}>
-                  Analysis complete — 46 unit tests passing (Stages 0–9).
+                  Analysis complete — 48 unit tests passing (Stages 0–9).
                   All CRDA attributions are non-causal sensitivity indicators.
                   R_safe = 0.60 (project-wide threshold).
                 </p>

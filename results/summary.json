@@ -1,0 +1,19 @@
+{
+    "video_source": "data/videos/demo.mp4",
+    "output_video": "results/audit_verification_out.mp4",
+    "features_csv": "results/features.csv",
+    "timeline_csv": "results/risk_timeline.csv",
+    "fps": 25.0,
+    "processed_frames": 160,
+    "duration_seconds": 6.4,
+    "resolution": "640x480",
+    "max_people": 12,
+    "average_people": 6.18125,
+    "maximum_risk": 0.39371384892636346,
+    "average_risk": 0.24044974995772644,
+    "maximum_panic": 0.5556455324526509,
+    "maximum_bottleneck": 0.5535032105383584,
+    "warning_triggered": false,
+    "warning_first_frame": null,
+    "warning_first_timestamp": null
+}

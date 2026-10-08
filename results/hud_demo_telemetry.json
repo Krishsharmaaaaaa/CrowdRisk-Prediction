@@ -1,0 +1,651 @@
+{
+    "metadata": {
+        "stage": "Stage 9",
+        "title": "Decision-Support HUD Telemetry & Audit Log",
+        "date": "October 2026",
+        "target_safe_threshold_R_safe": 0.6,
+        "moderate_risk_threshold": 0.3,
+        "crda_alpha": 1.0,
+        "scientific_disclaimer": "All risk scores are model-derived non-probabilistic indices. CRDA attributions are non-causal sensitivity indicators."
+    },
+    "umn_benchmark_summary": {
+        "source_video": "data/videos/indoor_clip4.mp4",
+        "frames_processed": 250,
+        "output_video": "results\\hud_demo_umn_indoor.mp4",
+        "sample_telemetry": [
+            {
+                "frame_idx": 0,
+                "timestamp": 0.0,
+                "model_risk": 0.2416,
+                "threat_level": "LOW",
+                "warning_status": "WARMUP",
+                "risk_trend": "STABLE",
+                "selected_cell_id": "C10",
+                "selected_cell_risk": 0.5284,
+                "top_driver": "Density",
+                "driver_deltas": {
+                    "D": 0.0,
+                    "O": 0.0,
+                    "B": 0.0,
+                    "K": 0.0
+                },
+                "driver_rankings": [
+                    "D",
+                    "O",
+                    "B",
+                    "K"
+                ],
+                "minimal_intervention_subset": [
+                    "Density"
+                ],
+                "predicted_cf_risk": 0.5284,
+                "predicted_delta_R": 0.0,
+                "safe_threshold_reached": true,
+                "safe_threshold_val": 0.6,
+                "decision_support_text": "Primary risk driver: Density. Perturbing [Density] toward calm reference reduces model risk by dR = 0.00."
+            },
+            {
+                "frame_idx": 1,
+                "timestamp": 0.033,
+                "model_risk": 0.2412,
+                "threat_level": "LOW",
+                "warning_status": "WARMUP",
+                "risk_trend": "STABLE",
+                "selected_cell_id": "C10",
+                "selected_cell_risk": 0.7032,
+                "top_driver": "Disorder",
+                "driver_deltas": {
+                    "O": 0.0884,
+                    "K": 0.0021,
+                    "D": 0.0,
+                    "B": 0.0
+                },
+                "driver_rankings": [
+                    "O",
+                    "K",
+                    "D",
+                    "B"
+                ],
+                "minimal_intervention_subset": [
+                    "Disorder",
+                    "Kinematics"
+                ],
+                "predicted_cf_risk": 0.6127,
+                "predicted_delta_R": 0.0905,
+                "safe_threshold_reached": false,
+                "safe_threshold_val": 0.6,
+                "decision_support_text": "Primary risk driver: Disorder (High Risk Sustained). Perturbing [Disorder + Kinematics] provides maximal model risk reduction dR = 0.09."
+            },
+            {
+                "frame_idx": 2,
+                "timestamp": 0.067,
+                "model_risk": 0.2406,
+                "threat_level": "LOW",
+                "warning_status": "WARMUP",
+                "risk_trend": "STABLE",
+                "selected_cell_id": "C13",
+                "selected_cell_risk": 0.6487,
+                "top_driver": "Disorder",
+                "driver_deltas": {
+                    "O": 0.0776,
+                    "K": 0.0062,
+                    "D": 0.0048,
+                    "B": 0.0
+                },
+                "driver_rankings": [
+                    "O",
+                    "K",
+                    "D",
+                    "B"
+                ],
+                "minimal_intervention_subset": [
+                    "Disorder"
+                ],
+                "predicted_cf_risk": 0.5712,
+                "predicted_delta_R": 0.0776,
+                "safe_threshold_reached": true,
+                "safe_threshold_val": 0.6,
+                "decision_support_text": "Primary risk driver: Disorder. Perturbing [Disorder] toward calm reference reduces model risk by dR = 0.08."
+            },
+            {
+                "frame_idx": 3,
+                "timestamp": 0.1,
+                "model_risk": 0.241,
+                "threat_level": "LOW",
+                "warning_status": "WARMUP",
+                "risk_trend": "STABLE",
+                "selected_cell_id": "C13",
+                "selected_cell_risk": 0.5275,
+                "top_driver": "Density",
+                "driver_deltas": {
+                    "D": 0.0029,
+                    "B": 0.0027,
+                    "O": 0.0,
+                    "K": 0.0
+                },
+                "driver_rankings": [
+                    "D",
+                    "B",
+                    "O",
+                    "K"
+                ],
+                "minimal_intervention_subset": [
+                    "Density"
+                ],
+                "predicted_cf_risk": 0.5247,
+                "predicted_delta_R": 0.0029,
+                "safe_threshold_reached": true,
+                "safe_threshold_val": 0.6,
+                "decision_support_text": "Primary risk driver: Density. Perturbing [Density] toward calm reference reduces model risk by dR = 0.00."
+            },
+            {
+                "frame_idx": 4,
+                "timestamp": 0.133,
+                "model_risk": 0.2407,
+                "threat_level": "LOW",
+                "warning_status": "WARMUP",
+                "risk_trend": "STABLE",
+                "selected_cell_id": "C10",
+                "selected_cell_risk": 0.6191,
+                "top_driver": "Disorder",
+                "driver_deltas": {
+                    "O": 0.0263,
+                    "B": 0.0029,
+                    "D": 0.0,
+                    "K": 0.0
+                },
+                "driver_rankings": [
+                    "O",
+                    "B",
+                    "D",
+                    "K"
+                ],
+                "minimal_intervention_subset": [
+                    "Disorder"
+                ],
+                "predicted_cf_risk": 0.5928,
+                "predicted_delta_R": 0.0263,
+                "safe_threshold_reached": true,
+                "safe_threshold_val": 0.6,
+                "decision_support_text": "Primary risk driver: Disorder. Perturbing [Disorder] toward calm reference reduces model risk by dR = 0.03."
+            },
+            {
+                "frame_idx": 5,
+                "timestamp": 0.167,
+                "model_risk": 0.2411,
+                "threat_level": "LOW",
+                "warning_status": "WARMUP",
+                "risk_trend": "STABLE",
+                "selected_cell_id": "C10",
+                "selected_cell_risk": 0.6158,
+                "top_driver": "Disorder",
+                "driver_deltas": {
+                    "O": 0.0201,
+                    "B": 0.0025,
+                    "D": 0.0,
+                    "K": 0.0
+                },
+                "driver_rankings": [
+                    "O",
+                    "B",
+                    "D",
+                    "K"
+                ],
+                "minimal_intervention_subset": [
+                    "Disorder"
+                ],
+                "predicted_cf_risk": 0.5957,
+                "predicted_delta_R": 0.0201,
+                "safe_threshold_reached": true,
+                "safe_threshold_val": 0.6,
+                "decision_support_text": "Primary risk driver: Disorder. Perturbing [Disorder] toward calm reference reduces model risk by dR = 0.02."
+            },
+            {
+                "frame_idx": 6,
+                "timestamp": 0.2,
+                "model_risk": 0.2316,
+                "threat_level": "LOW",
+                "warning_status": "WARMUP",
+                "risk_trend": "STABLE",
+                "selected_cell_id": "C10",
+                "selected_cell_risk": 0.5249,
+                "top_driver": "Bottleneck",
+                "driver_deltas": {
+                    "B": 0.007,
+                    "D": 0.0,
+                    "O": 0.0,
+                    "K": 0.0
+                },
+                "driver_rankings": [
+                    "B",
+                    "D",
+                    "O",
+                    "K"
+                ],
+                "minimal_intervention_subset": [
+                    "Bottleneck"
+                ],
+                "predicted_cf_risk": 0.5178,
+                "predicted_delta_R": 0.007,
+                "safe_threshold_reached": true,
+                "safe_threshold_val": 0.6,
+                "decision_support_text": "Primary risk driver: Bottleneck. Perturbing [Bottleneck] toward calm reference reduces model risk by dR = 0.01."
+            },
+            {
+                "frame_idx": 7,
+                "timestamp": 0.233,
+                "model_risk": 0.2258,
+                "threat_level": "LOW",
+                "warning_status": "WARMUP",
+                "risk_trend": "STABLE",
+                "selected_cell_id": "C10",
+                "selected_cell_risk": 0.5136,
+                "top_driver": "Density",
+                "driver_deltas": {
+                    "D": 0.0,
+                    "O": 0.0,
+                    "B": 0.0,
+                    "K": 0.0
+                },
+                "driver_rankings": [
+                    "D",
+                    "O",
+                    "B",
+                    "K"
+                ],
+                "minimal_intervention_subset": [
+                    "Density"
+                ],
+                "predicted_cf_risk": 0.5187,
+                "predicted_delta_R": 0.0,
+                "safe_threshold_reached": true,
+                "safe_threshold_val": 0.6,
+                "decision_support_text": "Primary risk driver: Density. Perturbing [Density] toward calm reference reduces model risk by dR = 0.00."
+            },
+            {
+                "frame_idx": 8,
+                "timestamp": 0.267,
+                "model_risk": 0.2312,
+                "threat_level": "LOW",
+                "warning_status": "WARMUP",
+                "risk_trend": "STABLE",
+                "selected_cell_id": "C10",
+                "selected_cell_risk": 0.663,
+                "top_driver": "Disorder",
+                "driver_deltas": {
+                    "O": 0.0734,
+                    "B": 0.0033,
+                    "D": 0.0003,
+                    "K": 0.0
+                },
+                "driver_rankings": [
+                    "O",
+                    "B",
+                    "D",
+                    "K"
+                ],
+                "minimal_intervention_subset": [
+                    "Disorder"
+                ],
+                "predicted_cf_risk": 0.5896,
+                "predicted_delta_R": 0.0734,
+                "safe_threshold_reached": true,
+                "safe_threshold_val": 0.6,
+                "decision_support_text": "Primary risk driver: Disorder. Perturbing [Disorder] toward calm reference reduces model risk by dR = 0.07."
+            },
+            {
+                "frame_idx": 9,
+                "timestamp": 0.3,
+                "model_risk": 0.2255,
+                "threat_level": "LOW",
+                "warning_status": "WARMUP",
+                "risk_trend": "STABLE",
+                "selected_cell_id": "C10",
+                "selected_cell_risk": 0.6547,
+                "top_driver": "Disorder",
+                "driver_deltas": {
+                    "O": 0.0967,
+                    "K": 0.0034,
+                    "D": 0.0,
+                    "B": 0.0
+                },
+                "driver_rankings": [
+                    "O",
+                    "K",
+                    "D",
+                    "B"
+                ],
+                "minimal_intervention_subset": [
+                    "Disorder"
+                ],
+                "predicted_cf_risk": 0.558,
+                "predicted_delta_R": 0.0967,
+                "safe_threshold_reached": true,
+                "safe_threshold_val": 0.6,
+                "decision_support_text": "Primary risk driver: Disorder. Perturbing [Disorder] toward calm reference reduces model risk by dR = 0.10."
+            }
+        ]
+    },
+    "concert_footage_summary": {
+        "source_video": "data\\videos\\pexels-timo-volz-5544073 (1080p).mp4",
+        "frames_processed": 120,
+        "sample_telemetry": [
+            {
+                "frame_idx": 0,
+                "timestamp": 0.0,
+                "model_risk": 0.2929,
+                "threat_level": "LOW",
+                "warning_status": "WARMUP",
+                "risk_trend": "STABLE",
+                "selected_cell_id": "C10",
+                "selected_cell_risk": 0.6067,
+                "top_driver": "Density",
+                "driver_deltas": {
+                    "D": 0.0,
+                    "O": 0.0,
+                    "B": 0.0,
+                    "K": 0.0
+                },
+                "driver_rankings": [
+                    "D",
+                    "O",
+                    "B",
+                    "K"
+                ],
+                "minimal_intervention_subset": [
+                    "Density"
+                ],
+                "predicted_cf_risk": 0.6067,
+                "predicted_delta_R": 0.0,
+                "safe_threshold_reached": false,
+                "safe_threshold_val": 0.6,
+                "decision_support_text": "Primary risk driver: Density (High Risk Sustained). Perturbing [Density] provides maximal model risk reduction dR = 0.00."
+            },
+            {
+                "frame_idx": 1,
+                "timestamp": 0.033,
+                "model_risk": 0.4354,
+                "threat_level": "MODERATE",
+                "warning_status": "WARMUP",
+                "risk_trend": "STABLE",
+                "selected_cell_id": "C5",
+                "selected_cell_risk": 0.9732,
+                "top_driver": "Disorder",
+                "driver_deltas": {
+                    "O": 0.1832,
+                    "K": 0.0301,
+                    "D": 0.0018,
+                    "B": 0.0
+                },
+                "driver_rankings": [
+                    "O",
+                    "K",
+                    "D",
+                    "B"
+                ],
+                "minimal_intervention_subset": [
+                    "Density",
+                    "Disorder",
+                    "Kinematics"
+                ],
+                "predicted_cf_risk": 0.7584,
+                "predicted_delta_R": 0.2147,
+                "safe_threshold_reached": false,
+                "safe_threshold_val": 0.6,
+                "decision_support_text": "Primary risk driver: Disorder (High Risk Sustained). Perturbing [Density + Disorder + Kinematics] provides maximal model risk reduction dR = 0.21."
+            },
+            {
+                "frame_idx": 2,
+                "timestamp": 0.067,
+                "model_risk": 0.4801,
+                "threat_level": "MODERATE",
+                "warning_status": "WARMUP",
+                "risk_trend": "STABLE",
+                "selected_cell_id": "C5",
+                "selected_cell_risk": 0.9583,
+                "top_driver": "Disorder",
+                "driver_deltas": {
+                    "O": 0.1376,
+                    "K": 0.0217,
+                    "D": 0.0,
+                    "B": 0.0
+                },
+                "driver_rankings": [
+                    "O",
+                    "K",
+                    "D",
+                    "B"
+                ],
+                "minimal_intervention_subset": [
+                    "Disorder",
+                    "Kinematics"
+                ],
+                "predicted_cf_risk": 0.799,
+                "predicted_delta_R": 0.1593,
+                "safe_threshold_reached": false,
+                "safe_threshold_val": 0.6,
+                "decision_support_text": "Primary risk driver: Disorder (High Risk Sustained). Perturbing [Disorder + Kinematics] provides maximal model risk reduction dR = 0.16."
+            },
+            {
+                "frame_idx": 3,
+                "timestamp": 0.1,
+                "model_risk": 0.4432,
+                "threat_level": "MODERATE",
+                "warning_status": "WARMUP",
+                "risk_trend": "STABLE",
+                "selected_cell_id": "C5",
+                "selected_cell_risk": 0.8641,
+                "top_driver": "Disorder",
+                "driver_deltas": {
+                    "O": 0.0706,
+                    "K": 0.0168,
+                    "D": 0.0,
+                    "B": 0.0
+                },
+                "driver_rankings": [
+                    "O",
+                    "K",
+                    "D",
+                    "B"
+                ],
+                "minimal_intervention_subset": [
+                    "Disorder",
+                    "Kinematics"
+                ],
+                "predicted_cf_risk": 0.7768,
+                "predicted_delta_R": 0.0874,
+                "safe_threshold_reached": false,
+                "safe_threshold_val": 0.6,
+                "decision_support_text": "Primary risk driver: Disorder (High Risk Sustained). Perturbing [Disorder + Kinematics] provides maximal model risk reduction dR = 0.09."
+            },
+            {
+                "frame_idx": 4,
+                "timestamp": 0.133,
+                "model_risk": 0.4398,
+                "threat_level": "MODERATE",
+                "warning_status": "WARMUP",
+                "risk_trend": "RISING",
+                "selected_cell_id": "C5",
+                "selected_cell_risk": 0.8606,
+                "top_driver": "Disorder",
+                "driver_deltas": {
+                    "O": 0.0643,
+                    "K": 0.0156,
+                    "D": 0.0,
+                    "B": 0.0
+                },
+                "driver_rankings": [
+                    "O",
+                    "K",
+                    "D",
+                    "B"
+                ],
+                "minimal_intervention_subset": [
+                    "Disorder",
+                    "Kinematics"
+                ],
+                "predicted_cf_risk": 0.7807,
+                "predicted_delta_R": 0.0799,
+                "safe_threshold_reached": false,
+                "safe_threshold_val": 0.6,
+                "decision_support_text": "Primary risk driver: Disorder (High Risk Sustained). Perturbing [Disorder + Kinematics] provides maximal model risk reduction dR = 0.08."
+            },
+            {
+                "frame_idx": 5,
+                "timestamp": 0.167,
+                "model_risk": 0.435,
+                "threat_level": "MODERATE",
+                "warning_status": "WARMUP",
+                "risk_trend": "RISING",
+                "selected_cell_id": "C5",
+                "selected_cell_risk": 0.8147,
+                "top_driver": "Kinematics",
+                "driver_deltas": {
+                    "K": 0.0096,
+                    "D": 0.0,
+                    "O": 0.0,
+                    "B": 0.0
+                },
+                "driver_rankings": [
+                    "K",
+                    "D",
+                    "O",
+                    "B"
+                ],
+                "minimal_intervention_subset": [
+                    "Kinematics"
+                ],
+                "predicted_cf_risk": 0.8051,
+                "predicted_delta_R": 0.0096,
+                "safe_threshold_reached": false,
+                "safe_threshold_val": 0.6,
+                "decision_support_text": "Primary risk driver: Kinematics (High Risk Sustained). Perturbing [Kinematics] provides maximal model risk reduction dR = 0.01."
+            },
+            {
+                "frame_idx": 6,
+                "timestamp": 0.2,
+                "model_risk": 0.4353,
+                "threat_level": "MODERATE",
+                "warning_status": "WARMUP",
+                "risk_trend": "STABLE",
+                "selected_cell_id": "C5",
+                "selected_cell_risk": 0.82,
+                "top_driver": "Kinematics",
+                "driver_deltas": {
+                    "K": 0.0062,
+                    "D": 0.0,
+                    "O": 0.0,
+                    "B": 0.0
+                },
+                "driver_rankings": [
+                    "K",
+                    "D",
+                    "O",
+                    "B"
+                ],
+                "minimal_intervention_subset": [
+                    "Kinematics"
+                ],
+                "predicted_cf_risk": 0.8138,
+                "predicted_delta_R": 0.0062,
+                "safe_threshold_reached": false,
+                "safe_threshold_val": 0.6,
+                "decision_support_text": "Primary risk driver: Kinematics (High Risk Sustained). Perturbing [Kinematics] provides maximal model risk reduction dR = 0.01."
+            },
+            {
+                "frame_idx": 7,
+                "timestamp": 0.234,
+                "model_risk": 0.4581,
+                "threat_level": "MODERATE",
+                "warning_status": "WARMUP",
+                "risk_trend": "STABLE",
+                "selected_cell_id": "C5",
+                "selected_cell_risk": 0.8271,
+                "top_driver": "Kinematics",
+                "driver_deltas": {
+                    "K": 0.0086,
+                    "D": 0.0054,
+                    "O": 0.0,
+                    "B": 0.0
+                },
+                "driver_rankings": [
+                    "K",
+                    "D",
+                    "O",
+                    "B"
+                ],
+                "minimal_intervention_subset": [
+                    "Density",
+                    "Kinematics"
+                ],
+                "predicted_cf_risk": 0.8131,
+                "predicted_delta_R": 0.014,
+                "safe_threshold_reached": false,
+                "safe_threshold_val": 0.6,
+                "decision_support_text": "Primary risk driver: Kinematics (High Risk Sustained). Perturbing [Density + Kinematics] provides maximal model risk reduction dR = 0.01."
+            },
+            {
+                "frame_idx": 8,
+                "timestamp": 0.267,
+                "model_risk": 0.4379,
+                "threat_level": "MODERATE",
+                "warning_status": "WARMUP",
+                "risk_trend": "STABLE",
+                "selected_cell_id": "C5",
+                "selected_cell_risk": 0.6481,
+                "top_driver": "Kinematics",
+                "driver_deltas": {
+                    "K": 0.0062,
+                    "D": 0.0,
+                    "O": 0.0,
+                    "B": 0.0
+                },
+                "driver_rankings": [
+                    "K",
+                    "D",
+                    "O",
+                    "B"
+                ],
+                "minimal_intervention_subset": [
+                    "Kinematics"
+                ],
+                "predicted_cf_risk": 0.642,
+                "predicted_delta_R": 0.0062,
+                "safe_threshold_reached": false,
+                "safe_threshold_val": 0.6,
+                "decision_support_text": "Primary risk driver: Kinematics (High Risk Sustained). Perturbing [Kinematics] provides maximal model risk reduction dR = 0.01."
+            },
+            {
+                "frame_idx": 9,
+                "timestamp": 0.3,
+                "model_risk": 0.4466,
+                "threat_level": "MODERATE",
+                "warning_status": "WARMUP",
+                "risk_trend": "STABLE",
+                "selected_cell_id": "C5",
+                "selected_cell_risk": 0.7237,
+                "top_driver": "Kinematics",
+                "driver_deltas": {
+                    "K": 0.0451,
+                    "D": 0.0,
+                    "O": 0.0,
+                    "B": 0.0
+                },
+                "driver_rankings": [
+                    "K",
+                    "D",
+                    "O",
+                    "B"
+                ],
+                "minimal_intervention_subset": [
+                    "Kinematics"
+                ],
+                "predicted_cf_risk": 0.6786,
+                "predicted_delta_R": 0.0451,
+                "safe_threshold_reached": false,
+                "safe_threshold_val": 0.6,
+                "decision_support_text": "Primary risk driver: Kinematics (High Risk Sustained). Perturbing [Kinematics] provides maximal model risk reduction dR = 0.05."
+            }
+        ]
+    }
+}

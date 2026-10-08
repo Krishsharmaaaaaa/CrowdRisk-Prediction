@@ -1,0 +1,957 @@
+{
+    "Scenario_1_Bottleneck": {
+        "scenario_name": "Bottleneck Dominant",
+        "description": "Narrow exit constriction causing heavy queuing and severe speed collapse.",
+        "observed_choke_features": {
+            "D": 0.864,
+            "O": 0.239,
+            "B": 0.192,
+            "K": 0.287
+        },
+        "crda_prediction": {
+            "initial_risk": 0.511,
+            "threat_level": "MODERATE",
+            "top_driver": "Density",
+            "top_driver_delta_R": 0.313,
+            "single_driver_attributions": [
+                {
+                    "driver_key": "D",
+                    "driver_name": "Density",
+                    "delta_R": 0.3132,
+                    "initial_value": 0.8644,
+                    "calm_reference": 0.1,
+                    "counterfactual_value": 0.1,
+                    "counterfactual_risk": 0.1975,
+                    "rank": 1
+                },
+                {
+                    "driver_key": "O",
+                    "driver_name": "Disorder",
+                    "delta_R": 0.0787,
+                    "initial_value": 0.2392,
+                    "calm_reference": 0.05,
+                    "counterfactual_value": 0.05,
+                    "counterfactual_risk": 0.432,
+                    "rank": 2
+                },
+                {
+                    "driver_key": "B",
+                    "driver_name": "Bottleneck",
+                    "delta_R": 0.0486,
+                    "initial_value": 0.1916,
+                    "calm_reference": 0.05,
+                    "counterfactual_value": 0.05,
+                    "counterfactual_risk": 0.4622,
+                    "rank": 3
+                },
+                {
+                    "driver_key": "K",
+                    "driver_name": "Kinematics",
+                    "delta_R": 0.0423,
+                    "initial_value": 0.2867,
+                    "calm_reference": 0.05,
+                    "counterfactual_value": 0.05,
+                    "counterfactual_risk": 0.4685,
+                    "rank": 4
+                }
+            ],
+            "minimal_intervention_subset": {
+                "subset_keys": [
+                    "D"
+                ],
+                "subset_names": [
+                    "Density"
+                ],
+                "cardinality": 1,
+                "initial_risk": 0.5108,
+                "counterfactual_risk": 0.1975,
+                "delta_R": 0.3132,
+                "achieved_safe_threshold": true,
+                "resulting_threat_level": "LOW"
+            },
+            "narrative": "ZONE CHOKE | Risk: MODERATE (0.51). Primary risk driver is Density (Delta R = 0.31). Minimal intervention: reducing [Density] toward calm baseline reduces predicted risk from 0.51 -> 0.20 (MODERATE -> LOW)."
+        },
+        "baseline_outcomes": {
+            "clearance_time_mean": 18.88,
+            "clearance_time_std": 0.39,
+            "exit_throughput_mean": 3.709,
+            "exit_throughput_std": 0.077,
+            "congestion_duration_mean": 14.99,
+            "congestion_duration_std": 0.74,
+            "collision_count_mean": 140.6
+        },
+        "intervention_outcomes": {
+            "Bottleneck (B)": {
+                "clearance_time_mean": 17.35,
+                "clearance_time_std": 0.79,
+                "delta_clearance": 1.53,
+                "cohen_d_clearance": 2.2,
+                "exit_throughput_mean": 4.043,
+                "exit_throughput_std": 0.182,
+                "delta_throughput": 0.334,
+                "cohen_d_throughput": 2.13,
+                "congestion_duration_mean": 13.4,
+                "congestion_duration_std": 0.83,
+                "delta_congestion": 1.59,
+                "collision_count_mean": 25.0,
+                "crda_predicted_delta_R": 0.049
+            },
+            "Density (D)": {
+                "clearance_time_mean": 16.66,
+                "clearance_time_std": 1.04,
+                "delta_clearance": 2.22,
+                "cohen_d_clearance": 2.52,
+                "exit_throughput_mean": 2.712,
+                "exit_throughput_std": 0.168,
+                "delta_throughput": -0.998,
+                "cohen_d_throughput": -6.82,
+                "congestion_duration_mean": 12.22,
+                "congestion_duration_std": 0.79,
+                "delta_congestion": 2.77,
+                "collision_count_mean": 46.0,
+                "crda_predicted_delta_R": 0.313
+            },
+            "Kinematics (K)": {
+                "clearance_time_mean": 24.74,
+                "clearance_time_std": 0.9,
+                "delta_clearance": -5.86,
+                "cohen_d_clearance": -7.52,
+                "exit_throughput_mean": 2.833,
+                "exit_throughput_std": 0.106,
+                "delta_throughput": -0.876,
+                "cohen_d_throughput": -8.47,
+                "congestion_duration_mean": 19.8,
+                "congestion_duration_std": 0.54,
+                "delta_congestion": -4.81,
+                "collision_count_mean": 91.6,
+                "crda_predicted_delta_R": 0.042
+            },
+            "Disorder (O)": {
+                "clearance_time_mean": 18.77,
+                "clearance_time_std": 0.51,
+                "delta_clearance": 0.11,
+                "cohen_d_clearance": 0.22,
+                "exit_throughput_mean": 3.732,
+                "exit_throughput_std": 0.102,
+                "delta_throughput": 0.023,
+                "cohen_d_throughput": 0.23,
+                "congestion_duration_mean": 14.98,
+                "congestion_duration_std": 0.75,
+                "delta_congestion": 0.01,
+                "collision_count_mean": 124.6,
+                "crda_predicted_delta_R": 0.079
+            },
+            "Multi (B + D)": {
+                "clearance_time_mean": 15.97,
+                "clearance_time_std": 1.36,
+                "delta_clearance": 2.91,
+                "cohen_d_clearance": 2.61,
+                "exit_throughput_mean": 2.837,
+                "exit_throughput_std": 0.232,
+                "delta_throughput": -0.872,
+                "cohen_d_throughput": -4.52,
+                "congestion_duration_mean": 11.28,
+                "congestion_duration_std": 0.8,
+                "delta_congestion": 3.71,
+                "collision_count_mean": 4.0,
+                "crda_predicted_delta_R": null
+            }
+        },
+        "validation_analysis": {
+            "crda_ranked_drivers": [
+                "Density (D)",
+                "Disorder (O)",
+                "Bottleneck (B)",
+                "Kinematics (K)"
+            ],
+            "simulator_ranked_throughput": [
+                "Bottleneck (B)",
+                "Disorder (O)",
+                "Kinematics (K)",
+                "Density (D)"
+            ],
+            "simulator_ranked_clearance": [
+                "Density (D)",
+                "Bottleneck (B)",
+                "Disorder (O)",
+                "Kinematics (K)"
+            ],
+            "simulator_ranked_congestion": [
+                "Density (D)",
+                "Bottleneck (B)",
+                "Disorder (O)",
+                "Kinematics (K)"
+            ],
+            "top1_agreement_throughput": false,
+            "top1_agreement_clearance": true,
+            "minimal_subset_effective": true
+        }
+    },
+    "Scenario_2_Density": {
+        "scenario_name": "Density Dominant",
+        "description": "Severe room overcrowding with high agent population and moderate door capacity.",
+        "observed_choke_features": {
+            "D": 0.902,
+            "O": 0.238,
+            "B": 0.156,
+            "K": 0.347
+        },
+        "crda_prediction": {
+            "initial_risk": 0.524,
+            "threat_level": "MODERATE",
+            "top_driver": "Density",
+            "top_driver_delta_R": 0.329,
+            "single_driver_attributions": [
+                {
+                    "driver_key": "D",
+                    "driver_name": "Density",
+                    "delta_R": 0.3286,
+                    "initial_value": 0.9024,
+                    "calm_reference": 0.1,
+                    "counterfactual_value": 0.1,
+                    "counterfactual_risk": 0.1955,
+                    "rank": 1
+                },
+                {
+                    "driver_key": "O",
+                    "driver_name": "Disorder",
+                    "delta_R": 0.0799,
+                    "initial_value": 0.2378,
+                    "calm_reference": 0.05,
+                    "counterfactual_value": 0.05,
+                    "counterfactual_risk": 0.4441,
+                    "rank": 2
+                },
+                {
+                    "driver_key": "K",
+                    "driver_name": "Kinematics",
+                    "delta_R": 0.0515,
+                    "initial_value": 0.3468,
+                    "calm_reference": 0.05,
+                    "counterfactual_value": 0.05,
+                    "counterfactual_risk": 0.4726,
+                    "rank": 3
+                },
+                {
+                    "driver_key": "B",
+                    "driver_name": "Bottleneck",
+                    "delta_R": 0.0373,
+                    "initial_value": 0.156,
+                    "calm_reference": 0.05,
+                    "counterfactual_value": 0.05,
+                    "counterfactual_risk": 0.4867,
+                    "rank": 4
+                }
+            ],
+            "minimal_intervention_subset": {
+                "subset_keys": [
+                    "D"
+                ],
+                "subset_names": [
+                    "Density"
+                ],
+                "cardinality": 1,
+                "initial_risk": 0.524,
+                "counterfactual_risk": 0.1955,
+                "delta_R": 0.3286,
+                "achieved_safe_threshold": true,
+                "resulting_threat_level": "LOW"
+            },
+            "narrative": "ZONE CHOKE | Risk: MODERATE (0.52). Primary risk driver is Density (Delta R = 0.33). Minimal intervention: reducing [Density] toward calm baseline reduces predicted risk from 0.52 -> 0.20 (MODERATE -> LOW)."
+        },
+        "baseline_outcomes": {
+            "clearance_time_mean": 20.31,
+            "clearance_time_std": 0.97,
+            "exit_throughput_mean": 5.923,
+            "exit_throughput_std": 0.295,
+            "congestion_duration_mean": 16.53,
+            "congestion_duration_std": 0.39,
+            "collision_count_mean": 194.6
+        },
+        "intervention_outcomes": {
+            "Density (D)": {
+                "clearance_time_mean": 16.97,
+                "clearance_time_std": 0.8,
+                "delta_clearance": 3.34,
+                "cohen_d_clearance": 3.35,
+                "exit_throughput_mean": 3.543,
+                "exit_throughput_std": 0.162,
+                "delta_throughput": -2.379,
+                "cohen_d_throughput": -8.94,
+                "congestion_duration_mean": 12.74,
+                "congestion_duration_std": 1.04,
+                "delta_congestion": 3.79,
+                "collision_count_mean": 17.4,
+                "crda_predicted_delta_R": 0.329
+            },
+            "Bottleneck (B)": {
+                "clearance_time_mean": 19.73,
+                "clearance_time_std": 1.01,
+                "delta_clearance": 0.58,
+                "cohen_d_clearance": 0.52,
+                "exit_throughput_mean": 6.099,
+                "exit_throughput_std": 0.328,
+                "delta_throughput": 0.176,
+                "cohen_d_throughput": 0.51,
+                "congestion_duration_mean": 16.02,
+                "congestion_duration_std": 0.42,
+                "delta_congestion": 0.51,
+                "collision_count_mean": 81.6,
+                "crda_predicted_delta_R": 0.037
+            },
+            "Kinematics (K)": {
+                "clearance_time_mean": 25.65,
+                "clearance_time_std": 0.71,
+                "delta_clearance": -5.34,
+                "cohen_d_clearance": -5.61,
+                "exit_throughput_mean": 4.682,
+                "exit_throughput_std": 0.129,
+                "delta_throughput": -1.241,
+                "cohen_d_throughput": -4.88,
+                "congestion_duration_mean": 21.95,
+                "congestion_duration_std": 0.39,
+                "delta_congestion": -5.42,
+                "collision_count_mean": 114.2,
+                "crda_predicted_delta_R": 0.051
+            },
+            "Disorder (O)": {
+                "clearance_time_mean": 20.24,
+                "clearance_time_std": 1.0,
+                "delta_clearance": 0.07,
+                "cohen_d_clearance": 0.06,
+                "exit_throughput_mean": 5.944,
+                "exit_throughput_std": 0.303,
+                "delta_throughput": 0.021,
+                "cohen_d_throughput": 0.06,
+                "congestion_duration_mean": 16.52,
+                "congestion_duration_std": 0.5,
+                "delta_congestion": 0.01,
+                "collision_count_mean": 183.2,
+                "crda_predicted_delta_R": 0.08
+            },
+            "Multi (D + B)": {
+                "clearance_time_mean": 16.85,
+                "clearance_time_std": 0.85,
+                "delta_clearance": 3.46,
+                "cohen_d_clearance": 3.39,
+                "exit_throughput_mean": 3.57,
+                "exit_throughput_std": 0.174,
+                "delta_throughput": -2.353,
+                "cohen_d_throughput": -8.7,
+                "congestion_duration_mean": 12.56,
+                "congestion_duration_std": 1.01,
+                "delta_congestion": 3.97,
+                "collision_count_mean": 1.2,
+                "crda_predicted_delta_R": null
+            }
+        },
+        "validation_analysis": {
+            "crda_ranked_drivers": [
+                "Density (D)",
+                "Disorder (O)",
+                "Kinematics (K)",
+                "Bottleneck (B)"
+            ],
+            "simulator_ranked_throughput": [
+                "Bottleneck (B)",
+                "Disorder (O)",
+                "Kinematics (K)",
+                "Density (D)"
+            ],
+            "simulator_ranked_clearance": [
+                "Density (D)",
+                "Bottleneck (B)",
+                "Disorder (O)",
+                "Kinematics (K)"
+            ],
+            "simulator_ranked_congestion": [
+                "Density (D)",
+                "Bottleneck (B)",
+                "Disorder (O)",
+                "Kinematics (K)"
+            ],
+            "top1_agreement_throughput": false,
+            "top1_agreement_clearance": true,
+            "minimal_subset_effective": true
+        }
+    },
+    "Scenario_3_Disorder": {
+        "scenario_name": "Disorder Dominant",
+        "description": "High directional panic/turbulence causing turbulent motion and frequent mutual blockage.",
+        "observed_choke_features": {
+            "D": 0.866,
+            "O": 0.227,
+            "B": 0.184,
+            "K": 0.293
+        },
+        "crda_prediction": {
+            "initial_risk": 0.505,
+            "threat_level": "MODERATE",
+            "top_driver": "Density",
+            "top_driver_delta_R": 0.312,
+            "single_driver_attributions": [
+                {
+                    "driver_key": "D",
+                    "driver_name": "Density",
+                    "delta_R": 0.3117,
+                    "initial_value": 0.8663,
+                    "calm_reference": 0.1,
+                    "counterfactual_value": 0.1,
+                    "counterfactual_risk": 0.1934,
+                    "rank": 1
+                },
+                {
+                    "driver_key": "O",
+                    "driver_name": "Disorder",
+                    "delta_R": 0.0738,
+                    "initial_value": 0.2272,
+                    "calm_reference": 0.05,
+                    "counterfactual_value": 0.05,
+                    "counterfactual_risk": 0.4313,
+                    "rank": 2
+                },
+                {
+                    "driver_key": "B",
+                    "driver_name": "Bottleneck",
+                    "delta_R": 0.0461,
+                    "initial_value": 0.1839,
+                    "calm_reference": 0.05,
+                    "counterfactual_value": 0.05,
+                    "counterfactual_risk": 0.4591,
+                    "rank": 3
+                },
+                {
+                    "driver_key": "K",
+                    "driver_name": "Kinematics",
+                    "delta_R": 0.0432,
+                    "initial_value": 0.2933,
+                    "calm_reference": 0.05,
+                    "counterfactual_value": 0.05,
+                    "counterfactual_risk": 0.4619,
+                    "rank": 4
+                }
+            ],
+            "minimal_intervention_subset": {
+                "subset_keys": [
+                    "D"
+                ],
+                "subset_names": [
+                    "Density"
+                ],
+                "cardinality": 1,
+                "initial_risk": 0.5051,
+                "counterfactual_risk": 0.1934,
+                "delta_R": 0.3117,
+                "achieved_safe_threshold": true,
+                "resulting_threat_level": "LOW"
+            },
+            "narrative": "ZONE CHOKE | Risk: MODERATE (0.51). Primary risk driver is Density (Delta R = 0.31). Minimal intervention: reducing [Density] toward calm baseline reduces predicted risk from 0.51 -> 0.19 (MODERATE -> LOW)."
+        },
+        "baseline_outcomes": {
+            "clearance_time_mean": 19.67,
+            "clearance_time_std": 0.6,
+            "exit_throughput_mean": 3.308,
+            "exit_throughput_std": 0.099,
+            "congestion_duration_mean": 15.1,
+            "congestion_duration_std": 0.9,
+            "collision_count_mean": 25.0
+        },
+        "intervention_outcomes": {
+            "Disorder (O)": {
+                "clearance_time_mean": 17.39,
+                "clearance_time_std": 0.65,
+                "delta_clearance": 2.28,
+                "cohen_d_clearance": 3.26,
+                "exit_throughput_mean": 3.743,
+                "exit_throughput_std": 0.138,
+                "delta_throughput": 0.435,
+                "cohen_d_throughput": 3.24,
+                "congestion_duration_mean": 13.54,
+                "congestion_duration_std": 0.96,
+                "delta_congestion": 1.56,
+                "collision_count_mean": 34.8,
+                "crda_predicted_delta_R": 0.074
+            },
+            "Bottleneck (B)": {
+                "clearance_time_mean": 19.24,
+                "clearance_time_std": 0.66,
+                "delta_clearance": 0.43,
+                "cohen_d_clearance": 0.61,
+                "exit_throughput_mean": 3.382,
+                "exit_throughput_std": 0.114,
+                "delta_throughput": 0.075,
+                "cohen_d_throughput": 0.63,
+                "congestion_duration_mean": 14.59,
+                "congestion_duration_std": 0.88,
+                "delta_congestion": 0.51,
+                "collision_count_mean": 14.6,
+                "crda_predicted_delta_R": 0.046
+            },
+            "Density (D)": {
+                "clearance_time_mean": 17.63,
+                "clearance_time_std": 1.38,
+                "delta_clearance": 2.04,
+                "cohen_d_clearance": 1.72,
+                "exit_throughput_mean": 2.282,
+                "exit_throughput_std": 0.171,
+                "delta_throughput": -1.025,
+                "cohen_d_throughput": -6.56,
+                "congestion_duration_mean": 12.38,
+                "congestion_duration_std": 0.77,
+                "delta_congestion": 2.72,
+                "collision_count_mean": 6.0,
+                "crda_predicted_delta_R": 0.312
+            },
+            "Kinematics (K)": {
+                "clearance_time_mean": 25.2,
+                "clearance_time_std": 0.84,
+                "delta_clearance": -5.53,
+                "cohen_d_clearance": -6.78,
+                "exit_throughput_mean": 2.582,
+                "exit_throughput_std": 0.085,
+                "delta_throughput": -0.725,
+                "cohen_d_throughput": -7.05,
+                "congestion_duration_mean": 20.25,
+                "congestion_duration_std": 0.84,
+                "delta_congestion": -5.15,
+                "collision_count_mean": 20.4,
+                "crda_predicted_delta_R": 0.043
+            },
+            "Multi (O + B)": {
+                "clearance_time_mean": 17.07,
+                "clearance_time_std": 0.78,
+                "delta_clearance": 2.6,
+                "cohen_d_clearance": 3.35,
+                "exit_throughput_mean": 3.816,
+                "exit_throughput_std": 0.17,
+                "delta_throughput": 0.508,
+                "cohen_d_throughput": 3.27,
+                "congestion_duration_mean": 12.93,
+                "congestion_duration_std": 0.81,
+                "delta_congestion": 2.17,
+                "collision_count_mean": 14.6,
+                "crda_predicted_delta_R": null
+            }
+        },
+        "validation_analysis": {
+            "crda_ranked_drivers": [
+                "Density (D)",
+                "Disorder (O)",
+                "Bottleneck (B)",
+                "Kinematics (K)"
+            ],
+            "simulator_ranked_throughput": [
+                "Disorder (O)",
+                "Bottleneck (B)",
+                "Kinematics (K)",
+                "Density (D)"
+            ],
+            "simulator_ranked_clearance": [
+                "Disorder (O)",
+                "Density (D)",
+                "Bottleneck (B)",
+                "Kinematics (K)"
+            ],
+            "simulator_ranked_congestion": [
+                "Density (D)",
+                "Disorder (O)",
+                "Bottleneck (B)",
+                "Kinematics (K)"
+            ],
+            "top1_agreement_throughput": false,
+            "top1_agreement_clearance": false,
+            "minimal_subset_effective": true
+        }
+    },
+    "Scenario_4_Kinematics": {
+        "scenario_name": "Kinematics Dominant",
+        "description": "Excessive speed surge and erratic speed dispersion creating physical jamming (Faster-is-slower).",
+        "observed_choke_features": {
+            "D": 0.82,
+            "O": 0.175,
+            "B": 0.146,
+            "K": 0.362
+        },
+        "crda_prediction": {
+            "initial_risk": 0.464,
+            "threat_level": "MODERATE",
+            "top_driver": "Density",
+            "top_driver_delta_R": 0.283,
+            "single_driver_attributions": [
+                {
+                    "driver_key": "D",
+                    "driver_name": "Density",
+                    "delta_R": 0.2833,
+                    "initial_value": 0.8197,
+                    "calm_reference": 0.1,
+                    "counterfactual_value": 0.1,
+                    "counterfactual_risk": 0.1803,
+                    "rank": 1
+                },
+                {
+                    "driver_key": "K",
+                    "driver_name": "Kinematics",
+                    "delta_R": 0.0537,
+                    "initial_value": 0.3623,
+                    "calm_reference": 0.05,
+                    "counterfactual_value": 0.05,
+                    "counterfactual_risk": 0.4099,
+                    "rank": 2
+                },
+                {
+                    "driver_key": "O",
+                    "driver_name": "Disorder",
+                    "delta_R": 0.0505,
+                    "initial_value": 0.1746,
+                    "calm_reference": 0.05,
+                    "counterfactual_value": 0.05,
+                    "counterfactual_risk": 0.4132,
+                    "rank": 3
+                },
+                {
+                    "driver_key": "B",
+                    "driver_name": "Bottleneck",
+                    "delta_R": 0.034,
+                    "initial_value": 0.1459,
+                    "calm_reference": 0.05,
+                    "counterfactual_value": 0.05,
+                    "counterfactual_risk": 0.4296,
+                    "rank": 4
+                }
+            ],
+            "minimal_intervention_subset": {
+                "subset_keys": [
+                    "D"
+                ],
+                "subset_names": [
+                    "Density"
+                ],
+                "cardinality": 1,
+                "initial_risk": 0.4636,
+                "counterfactual_risk": 0.1803,
+                "delta_R": 0.2833,
+                "achieved_safe_threshold": true,
+                "resulting_threat_level": "LOW"
+            },
+            "narrative": "ZONE CHOKE | Risk: MODERATE (0.46). Primary risk driver is Density (Delta R = 0.28). Minimal intervention: reducing [Density] toward calm baseline reduces predicted risk from 0.46 -> 0.18 (MODERATE -> LOW)."
+        },
+        "baseline_outcomes": {
+            "clearance_time_mean": 16.91,
+            "clearance_time_std": 5.25,
+            "exit_throughput_mean": 4.215,
+            "exit_throughput_std": 1.207,
+            "congestion_duration_mean": 6.66,
+            "congestion_duration_std": 0.92,
+            "collision_count_mean": 246.2
+        },
+        "intervention_outcomes": {
+            "Kinematics (K)": {
+                "clearance_time_mean": 16.78,
+                "clearance_time_std": 0.37,
+                "delta_clearance": 0.13,
+                "cohen_d_clearance": 0.03,
+                "exit_throughput_mean": 3.876,
+                "exit_throughput_std": 0.085,
+                "delta_throughput": -0.34,
+                "cohen_d_throughput": -0.35,
+                "congestion_duration_mean": 13.33,
+                "congestion_duration_std": 0.53,
+                "delta_congestion": -6.67,
+                "collision_count_mean": 49.6,
+                "crda_predicted_delta_R": 0.054
+            },
+            "Bottleneck (B)": {
+                "clearance_time_mean": 16.32,
+                "clearance_time_std": 5.7,
+                "delta_clearance": 0.59,
+                "cohen_d_clearance": 0.1,
+                "exit_throughput_mean": 4.465,
+                "exit_throughput_std": 1.389,
+                "delta_throughput": 0.25,
+                "cohen_d_throughput": 0.17,
+                "congestion_duration_mean": 6.51,
+                "congestion_duration_std": 0.75,
+                "delta_congestion": 0.15,
+                "collision_count_mean": 223.4,
+                "crda_predicted_delta_R": 0.034
+            },
+            "Density (D)": {
+                "clearance_time_mean": 17.08,
+                "clearance_time_std": 5.67,
+                "delta_clearance": -0.17,
+                "cohen_d_clearance": -0.03,
+                "exit_throughput_mean": 2.658,
+                "exit_throughput_std": 0.997,
+                "delta_throughput": -1.557,
+                "cohen_d_throughput": -1.26,
+                "congestion_duration_mean": 5.43,
+                "congestion_duration_std": 0.8,
+                "delta_congestion": 1.23,
+                "collision_count_mean": 78.6,
+                "crda_predicted_delta_R": 0.283
+            },
+            "Disorder (O)": {
+                "clearance_time_mean": 16.76,
+                "clearance_time_std": 5.38,
+                "delta_clearance": 0.15,
+                "cohen_d_clearance": 0.03,
+                "exit_throughput_mean": 4.278,
+                "exit_throughput_std": 1.257,
+                "delta_throughput": 0.063,
+                "cohen_d_throughput": 0.05,
+                "congestion_duration_mean": 6.7,
+                "congestion_duration_std": 0.88,
+                "delta_congestion": -0.04,
+                "collision_count_mean": 262.2,
+                "crda_predicted_delta_R": 0.05
+            },
+            "Multi (K + B)": {
+                "clearance_time_mean": 16.12,
+                "clearance_time_std": 0.39,
+                "delta_clearance": 0.79,
+                "cohen_d_clearance": 0.19,
+                "exit_throughput_mean": 4.035,
+                "exit_throughput_std": 0.097,
+                "delta_throughput": -0.181,
+                "cohen_d_throughput": -0.19,
+                "congestion_duration_mean": 12.67,
+                "congestion_duration_std": 0.39,
+                "delta_congestion": -6.01,
+                "collision_count_mean": 6.2,
+                "crda_predicted_delta_R": null
+            }
+        },
+        "validation_analysis": {
+            "crda_ranked_drivers": [
+                "Density (D)",
+                "Kinematics (K)",
+                "Disorder (O)",
+                "Bottleneck (B)"
+            ],
+            "simulator_ranked_throughput": [
+                "Bottleneck (B)",
+                "Disorder (O)",
+                "Kinematics (K)",
+                "Density (D)"
+            ],
+            "simulator_ranked_clearance": [
+                "Bottleneck (B)",
+                "Disorder (O)",
+                "Kinematics (K)",
+                "Density (D)"
+            ],
+            "simulator_ranked_congestion": [
+                "Density (D)",
+                "Bottleneck (B)",
+                "Disorder (O)",
+                "Kinematics (K)"
+            ],
+            "top1_agreement_throughput": false,
+            "top1_agreement_clearance": false,
+            "minimal_subset_effective": true
+        }
+    },
+    "Scenario_5_MultiDriver": {
+        "scenario_name": "Multi-Driver Compound Risk",
+        "description": "Compound hazard combining high density, narrow door, elevated noise, and speed surge.",
+        "observed_choke_features": {
+            "D": 0.872,
+            "O": 0.28,
+            "B": 0.214,
+            "K": 0.311
+        },
+        "crda_prediction": {
+            "initial_risk": 0.543,
+            "threat_level": "MODERATE",
+            "top_driver": "Density",
+            "top_driver_delta_R": 0.324,
+            "single_driver_attributions": [
+                {
+                    "driver_key": "D",
+                    "driver_name": "Density",
+                    "delta_R": 0.3244,
+                    "initial_value": 0.8725,
+                    "calm_reference": 0.1,
+                    "counterfactual_value": 0.1,
+                    "counterfactual_risk": 0.2188,
+                    "rank": 1
+                },
+                {
+                    "driver_key": "O",
+                    "driver_name": "Disorder",
+                    "delta_R": 0.0962,
+                    "initial_value": 0.2801,
+                    "calm_reference": 0.05,
+                    "counterfactual_value": 0.05,
+                    "counterfactual_risk": 0.4471,
+                    "rank": 2
+                },
+                {
+                    "driver_key": "B",
+                    "driver_name": "Bottleneck",
+                    "delta_R": 0.0568,
+                    "initial_value": 0.2138,
+                    "calm_reference": 0.05,
+                    "counterfactual_value": 0.05,
+                    "counterfactual_risk": 0.4865,
+                    "rank": 3
+                },
+                {
+                    "driver_key": "K",
+                    "driver_name": "Kinematics",
+                    "delta_R": 0.0476,
+                    "initial_value": 0.3113,
+                    "calm_reference": 0.05,
+                    "counterfactual_value": 0.05,
+                    "counterfactual_risk": 0.4957,
+                    "rank": 4
+                }
+            ],
+            "minimal_intervention_subset": {
+                "subset_keys": [
+                    "D"
+                ],
+                "subset_names": [
+                    "Density"
+                ],
+                "cardinality": 1,
+                "initial_risk": 0.5433,
+                "counterfactual_risk": 0.2188,
+                "delta_R": 0.3244,
+                "achieved_safe_threshold": true,
+                "resulting_threat_level": "LOW"
+            },
+            "narrative": "ZONE CHOKE | Risk: MODERATE (0.54). Primary risk driver is Density (Delta R = 0.32). Minimal intervention: reducing [Density] toward calm baseline reduces predicted risk from 0.54 -> 0.22 (MODERATE -> LOW)."
+        },
+        "baseline_outcomes": {
+            "clearance_time_mean": 20.88,
+            "clearance_time_std": 3.91,
+            "exit_throughput_mean": 4.466,
+            "exit_throughput_std": 0.834,
+            "congestion_duration_mean": 10.3,
+            "congestion_duration_std": 0.57,
+            "collision_count_mean": 508.6
+        },
+        "intervention_outcomes": {
+            "Bottleneck (B)": {
+                "clearance_time_mean": 20.71,
+                "clearance_time_std": 4.02,
+                "delta_clearance": 0.17,
+                "cohen_d_clearance": 0.04,
+                "exit_throughput_mean": 4.516,
+                "exit_throughput_std": 0.883,
+                "delta_throughput": 0.051,
+                "cohen_d_throughput": 0.05,
+                "congestion_duration_mean": 9.63,
+                "congestion_duration_std": 0.53,
+                "delta_congestion": 0.67,
+                "collision_count_mean": 309.8,
+                "crda_predicted_delta_R": 0.057
+            },
+            "Density (D)": {
+                "clearance_time_mean": 14.76,
+                "clearance_time_std": 3.31,
+                "delta_clearance": 6.12,
+                "cohen_d_clearance": 1.51,
+                "exit_throughput_mean": 3.548,
+                "exit_throughput_std": 0.731,
+                "delta_throughput": -0.917,
+                "cohen_d_throughput": -1.05,
+                "congestion_duration_mean": 7.57,
+                "congestion_duration_std": 0.83,
+                "delta_congestion": 2.73,
+                "collision_count_mean": 113.4,
+                "crda_predicted_delta_R": 0.324
+            },
+            "Disorder (O)": {
+                "clearance_time_mean": 19.94,
+                "clearance_time_std": 3.73,
+                "delta_clearance": 0.94,
+                "cohen_d_clearance": 0.22,
+                "exit_throughput_mean": 4.676,
+                "exit_throughput_std": 0.877,
+                "delta_throughput": 0.211,
+                "cohen_d_throughput": 0.22,
+                "congestion_duration_mean": 9.55,
+                "congestion_duration_std": 0.68,
+                "delta_congestion": 0.75,
+                "collision_count_mean": 506.4,
+                "crda_predicted_delta_R": 0.096
+            },
+            "Kinematics (K)": {
+                "clearance_time_mean": 22.02,
+                "clearance_time_std": 0.96,
+                "delta_clearance": -1.14,
+                "cohen_d_clearance": -0.36,
+                "exit_throughput_mean": 4.095,
+                "exit_throughput_std": 0.184,
+                "delta_throughput": -0.37,
+                "cohen_d_throughput": -0.55,
+                "congestion_duration_mean": 17.66,
+                "congestion_duration_std": 0.74,
+                "delta_congestion": -7.36,
+                "collision_count_mean": 202.6,
+                "crda_predicted_delta_R": 0.048
+            },
+            "Multi (B + D)": {
+                "clearance_time_mean": 14.86,
+                "clearance_time_std": 3.44,
+                "delta_clearance": 6.02,
+                "cohen_d_clearance": 1.46,
+                "exit_throughput_mean": 3.543,
+                "exit_throughput_std": 0.787,
+                "delta_throughput": -0.922,
+                "cohen_d_throughput": -1.02,
+                "congestion_duration_mean": 7.21,
+                "congestion_duration_std": 0.83,
+                "delta_congestion": 3.09,
+                "collision_count_mean": 69.2,
+                "crda_predicted_delta_R": null
+            },
+            "Multi (B + D + O)": {
+                "clearance_time_mean": 14.49,
+                "clearance_time_std": 3.39,
+                "delta_clearance": 6.39,
+                "cohen_d_clearance": 1.56,
+                "exit_throughput_mean": 3.645,
+                "exit_throughput_std": 0.845,
+                "delta_throughput": -0.821,
+                "cohen_d_throughput": -0.87,
+                "congestion_duration_mean": 6.94,
+                "congestion_duration_std": 0.84,
+                "delta_congestion": 3.36,
+                "collision_count_mean": 74.4,
+                "crda_predicted_delta_R": null
+            }
+        },
+        "validation_analysis": {
+            "crda_ranked_drivers": [
+                "Density (D)",
+                "Disorder (O)",
+                "Bottleneck (B)",
+                "Kinematics (K)"
+            ],
+            "simulator_ranked_throughput": [
+                "Disorder (O)",
+                "Bottleneck (B)",
+                "Kinematics (K)",
+                "Density (D)"
+            ],
+            "simulator_ranked_clearance": [
+                "Density (D)",
+                "Disorder (O)",
+                "Bottleneck (B)",
+                "Kinematics (K)"
+            ],
+            "simulator_ranked_congestion": [
+                "Density (D)",
+                "Disorder (O)",
+                "Bottleneck (B)",
+                "Kinematics (K)"
+            ],
+            "top1_agreement_throughput": false,
+            "top1_agreement_clearance": true,
+            "minimal_subset_effective": true
+        }
+    }
+}

@@ -71,6 +71,14 @@ results/*.csv
 results/*.png
 results/*.json
 !results/.gitkeep
+!results/summary.json
+!results/risk_timeline.csv
+!results/cell_grid_samples.json
+!results/crda_explanations.json
+!results/hud_demo_telemetry.json
+!results/metrics.json
+!results/evaluation_report.json
+!results/simulation_validation.json
 
 # Secrets & Environment variables
 .env
