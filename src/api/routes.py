@@ -4,10 +4,13 @@ Provides endpoints for video analysis, asynchronous job tracking, telemetry stre
 precomputed demo benchmarking, and safe file exports.
 """
 
+import logging
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 from fastapi import APIRouter, File, HTTPException, UploadFile, status
 from fastapi.responses import FileResponse, JSONResponse
+
+logger = logging.getLogger(__name__)
 
 from .job_manager import AnalysisJobManager
 
